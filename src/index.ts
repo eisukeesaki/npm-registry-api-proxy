@@ -1,5 +1,11 @@
+/*##############################################################################
+
+# start server
+
+##############################################################################*/
+
 import dotenv from 'dotenv';
-import express, { Request, Response } from 'express';
+import server from './server';
 
 dotenv.config();
 
@@ -7,11 +13,7 @@ const scheme = 'http';
 const host = process.env.HOST;
 const port = process.env.PORT;
 
-const app = express();
-
-app.get('/', (req: Request, res: Response) => {
-  res.end('you got me');
+server.listen(port, () => {
+  console.log(`node server is listening to ${scheme}://${host}:${port}`)
 });
-
-app.listen(port, () => console.log(`node is listening to ${scheme}://${host}:${port}`));
 
