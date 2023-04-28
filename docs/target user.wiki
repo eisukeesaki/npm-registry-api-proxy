@@ -1,0 +1,2 @@
+target user
+    NPM registry API users who needs information about their API usage

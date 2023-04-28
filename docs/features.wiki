@@ -1,0 +1,10 @@
+features
+    all users
+        act as a proxy for public API
+    registered & authenticated users
+        usage data
+    admins
+        monitor
+            performance
+            availability
+

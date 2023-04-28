@@ -1,0 +1,26 @@
+architectural entities (and their resources)
+    origin API
+        NPM public registry API
+            resources
+                /{packages}
+                /{packages}/{version}
+                /-/v1/search
+                    parameters
+                        text
+                        size
+                        from
+                        quality
+                        popularity
+                        maintenance
+    proxy API
+        resources
+            public
+                proxied resources (of NPM Public Registry API)
+                    endpoints
+                        /{packages}
+                        /{packages}/{version}
+                        /-/v1/search
+                usage (of this API) data
+                    endpoints
+                        /usage
+

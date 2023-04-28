@@ -1,0 +1,23 @@
+motivation
+    desires
+        gain experiences
+            owning problems and their solutions
+            doing backend work
+        gain understanding on
+            runtime
+                program runtime
+                language runtime
+                system runtime
+            deployment
+            scalability
+    problem
+        definition
+            NPM registry API [,,,] X
+                ,,,
+                    lacks
+                    can be [exploited, extended, enhanced] by
+                X
+                    usage logging feature
+        solution
+            Build a Docker-containerized API proxy around an public API with additional RESTful database resource and deploy it to a hosting platform through a self-configured automated deployment mechanism.
+

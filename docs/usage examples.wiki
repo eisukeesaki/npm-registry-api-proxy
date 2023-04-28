@@ -1,0 +1,22 @@
+usage examples
+    case
+        sequence
+            HTTP client
+                makes GET http://www.tbd.tbd/search?text=node%20orm
+                receives response
+                    {
+                      "objects": [
+                        {
+                          "package": {
+                            "name": "orm",
+                            "version": "7.1.0",
+                            "description": "NodeJS Object-relational mapping",
+                            ...
+                          },
+                          ...
+                        },
+                        ...
+                      ],
+                      ...
+                    }
+

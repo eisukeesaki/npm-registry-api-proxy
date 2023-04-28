@@ -1,82 +1,9 @@
 NPM registry API proxy
-    motivation
-        problem
-            NPM registry API [,,,] X
-                ,,,
-                    lacks
-                    can be [exploited, extended, enhanced] by
-                X
-                    usage logging feature
-        desires
-            gain experiences
-                owning problems and their solutions
-                doing backend work
-            gain understanding on
-                runtime
-                    program runtime
-                    language runtime
-                    system runtime
-                deployment
-                scalability
-    solution
-        Build a Docker-containerized API proxy around an public API with additional RESTful database resource and deploy it to a hosting platform through a self-configured automated deployment mechanism.
-    architectural entities and roles
-        origin API
-            NPM public registry API
-                resources
-                    /{packages}
-                    /{packages}/{version}
-                    /-/v1/search
-                        parameters
-                            text
-                            size
-                            from
-                            quality
-                            popularity
-                            maintenance
-        proxy API
-            features
-                for
-                    admins
-                        monitor
-                            performance
-                            availability
-                    registered & authenticated users
-                        log
-                            usage
-                    all users
-                        act as a proxy for public API
-            resources
-                public
-                    proxied resources (of NPM Public Registry API)
-                        endpoints
-                            /{packages}
-                            /{packages}/{version}
-                            /-/v1/search
-                    usage (of this API) data
-                        endpoints
-                            /usage
-    usage examples
-        case
-            sequence
-                HTTP client
-                    makes GET http://www.tbd.tbd/search?text=node%20orm
-                    receives response
-                        {
-                          "objects": [
-                            {
-                              "package": {
-                                "name": "orm",
-                                "version": "7.1.0",
-                                "description": "NodeJS Object-relational mapping",
-                                ...
-                              },
-                              ...
-                            },
-                            ...
-                          ],
-                          ...
-                        }
+    [[motivation]]
+    [[target user]]
+    [[supported clients]]
+    [[features]]
+    [[usage examples]]
+    [[architectural entities (and their resources)]]
     todo
 
-    

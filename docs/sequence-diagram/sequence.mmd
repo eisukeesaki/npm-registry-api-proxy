@@ -1,0 +1,29 @@
+sequenceDiagram
+
+    participant C as HTTP client
+    participant P as API proxy
+    participant R as NPM registry API
+
+    activate C
+    C-)P: GET http://www.tbd.tbd/search
+    deactivate C
+    activate P
+    Note right of C: ?text=node%20orm
+
+    P-)R: GET https://www.registry.npmjs.com/-/v1/search
+    deactivate P
+    activate R
+    Note right of P: ?text=node%20orm
+
+    R-)P: 200
+    deactivate R
+    activate P
+    Note left of R: { "...": [{ package }, ...] }
+
+    P-)C: 200
+    deactivate P
+    activate C
+    Note  left of P: { "...": [{ package }, ...] }
+
+    deactivate C
+
