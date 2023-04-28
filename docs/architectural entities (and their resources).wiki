@@ -2,8 +2,8 @@ architectural entities (and their resources)
     origin API
         NPM public registry API
             resources
-                /{packages}
-                /{packages}/{version}
+                /{package}
+                /{package}/{version}
                 /-/v1/search
                     parameters
                         text
