@@ -13,6 +13,11 @@ app.get('/search', (req: Request, res: Response) => {
   client.get('https://registry.npmjs.com/-/v1/search', {
     params: {
       text: req.query.text,
+      size: req.query.size,
+      from: req.query.from,
+      quality: req.query.quality,
+      popularity: req.query.popularity,
+      maintenance: req.query.maintenance,
     }
   })
     .then(function(response) {
