@@ -20,7 +20,16 @@ architectural entities (and their resources)
                         /{packages}
                         /{packages}/{version}
                         /-/v1/search
-                usage (of this API) data
-                    endpoints
-                        /usage
+            private
+                registered & authenticated users
+                    usage (of this API) data
+                        requests
+                            HTTP request headers
+                            HTTP response header
+                            HTTP response body
+                        endpoints
+                            /usage
+                    
+                
+                    
 
