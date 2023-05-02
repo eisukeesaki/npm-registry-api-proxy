@@ -6,12 +6,12 @@ erDiagram
     REQ {
         UUID id PK "required"
         jsonb headers
-        string timestamp "required"
+        string time "required"
     }
     RES {
         UUID id PK "required"
         UUID request_id FK "req(id)"
         jsonb headers
-        string timestamp "required"
+        string time "required"
         jsonb body
     }
