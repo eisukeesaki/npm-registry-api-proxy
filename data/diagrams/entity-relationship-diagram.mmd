@@ -1,0 +1,25 @@
+---
+title: npm-registry-proxy
+---
+erDiagram
+    REQ ||--o| RES: "is handled with"
+    REQ {
+        UUID id PK "required"
+        string method
+        string path
+        string protocol
+        string host
+        string userAgent
+        string accept
+        string timestamp "required"
+    }
+    RES {
+        UUID id PK "required"
+        UUID request_id FK "req(id)"
+        string x-powered-by
+        string content-type
+        string content-length
+        string etag
+        string timestamp "required"
+        jsonb body
+    }
