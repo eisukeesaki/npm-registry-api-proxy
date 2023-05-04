@@ -4,3 +4,7 @@ investigate
             [ ] axios is imported despite it not being installed locally nor globally
                 /Users/eisuke/dev/npm-registry-api-proxy/src/routes/registry.routes.ts
                 cause
+
+implement behavior
+    [ ] GET /{package}/{version} -> write request data to database
+        implement types for `queryDB.ts`

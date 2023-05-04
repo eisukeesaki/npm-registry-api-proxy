@@ -23,9 +23,9 @@ architectural entities (and their resources)
             private
                 registered & authenticated users
                     usage (of this API) data
-                        requests
+                        logs of
                             HTTP request headers
-                            HTTP response header
+                            HTTP response headers
                             HTTP response body
                         endpoints
                             /usage
