@@ -7,6 +7,7 @@
 import { Request, Response, NextFunction } from 'express';
 import pool from '../database/queryDB';
 
+// @do? define return type Promise<pg.result>
 async function collectRequest(req: Request, res: Response, next: NextFunction) {
   const request = {
     request: {
@@ -22,8 +23,11 @@ async function collectRequest(req: Request, res: Response, next: NextFunction) {
     time: new Date().toISOString(),
   };
 
-  pool.query(`insert into requests (headers, time) values ($1, $2)`,
-    [request.request.headers, request.time]);
+  const sql = 'INSERT INTO requests (headers, time) VALUES ($1, $2) RETURNING id';
+  const values = [request.request.headers, request.time];
+  await pool.query(sql, values)
+    .then((res) => req.id = res.rows[0].id)
+    .catch((err) => console.error('error executing db query', err.stack));
 
   next();
 }

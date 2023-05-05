@@ -14,20 +14,18 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/express": "^4.17.17",
-    "@types/node": "^18.16.2",
+    "@tsconfig/recommended": "^1.0.2",
+    "@types/express-serve-static-core": "^4.17.34",
+    "@types/pg": "^8.6.6",
     "@typescript-eslint/eslint-plugin": "^5.59.1",
     "@typescript-eslint/parser": "^5.59.1",
     "eslint": "^8.39.0",
-    "express": "^4.18.2",
     "nodemon": "^2.0.22",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.0.4"
+    "ts-node": "^10.9.1"
   },
   "dependencies": {
-    "@tsconfig/recommended": "^1.0.2",
-    "@types/pg": "^8.6.6",
     "dotenv": "^16.0.3",
+    "express": "^4.18.2",
     "pg": "^8.10.0"
   }
 }

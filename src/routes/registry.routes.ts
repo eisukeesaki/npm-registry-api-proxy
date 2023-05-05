@@ -4,10 +4,11 @@
 
 ##############################################################################*/
 
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import client from 'axios';
-// import { run as jsonProcessor } from 'node-jq';
 import collectRequest from '../middlewares/collectRequest';
+import collectResponse from '../middlewares/collectResponse';
+import pool from '../database/queryDB';
 
 const router = express.Router();
 
@@ -27,7 +28,7 @@ router.get('/registry/:package', (req: Request, res: Response) => {
 
 router.get('/registry/:package/:version',
   collectRequest, // write HTTP request metadata to db
-  (req: Request, res: Response) => {
+  (req: Request, res: Response, next: NextFunction) => {
     const pkg = req.params.package;
     const ver = req.params.version;
 
@@ -36,16 +37,7 @@ router.get('/registry/:package/:version',
         const pkgData = response.data;
         res.status(200).json(pkgData);
 
-        // const resHeaders = {
-        //   response: {
-        //     headers: res.getHeaders(),
-        //     body: pkgData,
-        //     time: new Date().toISOString(),
-        //   }
-        // };
-        // jsonProcessor('.', resHeaders, { input: "json" })
-        //   .then(output => console.log(output))
-        //   .catch(err => console.error(err));
+        collectResponse(req, res, next, pkgData); // write HTTP response metadata to db
       })
       .catch(function(error) {
         console.log(error);

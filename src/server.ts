@@ -7,8 +7,6 @@
 import express, { Request, Response } from 'express';
 import registryRoutes from './routes/registry.routes';
 
-console.log(registryRoutes);
-
 const app = express();
 
 /**
