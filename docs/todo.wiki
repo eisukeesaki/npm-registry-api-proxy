@@ -9,3 +9,4 @@ investigate
 implement behavior
     [X] GET /{package}/{version} -> write request data to database
         implement types for `queryDB.ts`
+    [ ] implement routes to serve resources: request, response
