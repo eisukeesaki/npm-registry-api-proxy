@@ -1,4 +1,4 @@
 # npm-registry-api-proxy
 
-[documentation](index.wiki) (links in the documentation can be followed using [vimwiki](https://github.com/vimwiki/vimwiki))
+This project uses [.wiki files](https://github.com/vimwiki/vimwiki) in [docs](.) to [document](index.wiki) the project.
 
