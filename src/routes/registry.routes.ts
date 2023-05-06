@@ -25,21 +25,20 @@ router.get('/registry/:package', async (req: Request, res: Response) => {
 
 router.get('/registry/:package/:version',
   collectRequest, // write HTTP request metadata to db
-  (req: Request, res: Response, next: NextFunction) => {
-    const pkg = req.params.package;
-    const ver = req.params.version;
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const pkg = req.params.package;
+      const ver = req.params.version;
+      const { data: pkgData } = await client.get(`https://registry.npmjs.com/${pkg}/${ver}`);
+      console.log(pkgData);
 
-    client.get(`https://registry.npmjs.com/${pkg}/${ver}`)
-      .then(function(response) {
-        const pkgData = response.data;
-        res.status(200).json(pkgData);
+      res.status(200).json(pkgData);
 
-        collectResponse(req, res, next, pkgData); // write HTTP response metadata to db
-      })
-      .catch(function(error) {
-        console.log(error);
-        res.sendStatus(500);
-      });
+      collectResponse(req, res, next, pkgData); // write HTTP response metadata to db
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
   });
 
 router.get('/registry/search', (req: Request, res: Response) => {
