@@ -12,11 +12,20 @@ import pool from '../database/queryDB';
 
 const router = express.Router();
 
-router.get('/registry/:package', async (req: Request, res: Response) => {
+router.get('/registry/search', async (req: Request, res: Response) => {
   try {
-    const pkg = req.params.package;
-    const { data } = await client.get(`https://registry.npmjs.com/${pkg}`);
-    res.status(200).send(data);
+    const { data } = await client.get('https://registry.npmjs.com/-/v1/search', {
+      params: {
+        text: req.query.text,
+        size: req.query.size,
+        from: req.query.from,
+        quality: req.query.quality,
+        popularity: req.query.popularity,
+        maintenance: req.query.maintenance,
+      }
+    });
+
+    res.status(200).json(data);
   } catch (err) {
     console.log(err);
     res.sendStatus(500);
@@ -41,25 +50,15 @@ router.get('/registry/:package/:version',
     }
   });
 
-router.get('/registry/search', (req: Request, res: Response) => {
-  client.get('https://registry.npmjs.com/-/v1/search', {
-    params: {
-      text: req.query.text,
-      size: req.query.size,
-      from: req.query.from,
-      quality: req.query.quality,
-      popularity: req.query.popularity,
-      maintenance: req.query.maintenance,
-    }
-  })
-    .then(function(response) {
-      const data = response.data;
-      res.status(200).json(data);
-    })
-    .catch(function(error) {
-      console.log(error);
-      res.sendStatus(500);
-    });
+router.get('/registry/:package', async (req: Request, res: Response) => {
+  try {
+    const pkg = req.params.package;
+    const { data } = await client.get(`https://registry.npmjs.com/${pkg}`);
+    res.status(200).send(data);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
 });
 
 export default router;
