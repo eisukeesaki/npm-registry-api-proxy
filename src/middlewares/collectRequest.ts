@@ -7,7 +7,7 @@
 import { Request, Response, NextFunction } from 'express';
 import pool from '../database/queryDB';
 
-// @do? define return type Promise<pg.result>
+// @todo define return type `Promise<pg.result>`?
 async function collectRequest(req: Request, res: Response, next: NextFunction) {
   const request = {
     request: {

@@ -7,9 +7,10 @@
 import { Request, Response, NextFunction } from 'express';
 import pool from '../database/queryDB';
 
-// ?todo define return type Promise<pg.result>
+// @todo define return type `Promise<pg.result>`?
 async function collectResponse
-  (req: Request, res: Response, next: NextFunction, pkgData: any) { // @todo determine if any type is appropriate for pkgData
+  // @todo is type `any` for `pkgData` appropriate?
+  (req: Request, res: Response, next: NextFunction, pkgData: any) {
   const resMetadata = {
     response: {
       headers: res.getHeaders(),

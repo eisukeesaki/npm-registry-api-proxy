@@ -34,7 +34,8 @@ registry.get('/registry/search', async (req: Request, res: Response) => {
 });
 
 registry.get('/registry/:package/:version',
-  collectRequest, // write HTTP request metadata to db
+  // write HTTP request metadata to db
+  collectRequest,
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const pkg = req.params.package;
@@ -43,8 +44,8 @@ registry.get('/registry/:package/:version',
         await client.get(`https://registry.npmjs.com/${pkg}/${ver}`);
 
       res.status(200).json(pkgData);
-
-      collectResponse(req, res, next, pkgData); // write HTTP response metadata to db
+      // write HTTP response metadata to db
+      collectResponse(req, res, next, pkgData);
     } catch (err) {
       console.log(err);
       res.sendStatus(500);

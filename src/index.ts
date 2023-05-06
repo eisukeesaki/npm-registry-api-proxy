@@ -5,10 +5,10 @@
 
 ##############################################################################*/
 
-import dotenv from 'dotenv'; // unnecessary if you preload dotenv into node using --require module
+import dotenv from 'dotenv';
 import server from './server';
 
-dotenv.config(); // unnecessary if you preload dotenv into node using --require module
+dotenv.config();
 
 const scheme = 'http';
 const host = process.env.HOST;
