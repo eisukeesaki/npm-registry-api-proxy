@@ -23,11 +23,16 @@ async function collectRequest(req: Request, res: Response, next: NextFunction) {
     time: new Date().toISOString(),
   };
 
-  const sql = 'INSERT INTO requests (headers, time) VALUES ($1, $2) RETURNING id';
-  const values = [request.request.headers, request.time];
-  await pool.query(sql, values)
-    .then((res) => req.id = res.rows[0].id)
-    .catch((err) => console.error('error executing db query', err.stack));
+  try {
+    const sql = 'INSERT INTO requests (headers, time) VALUES ($1, $2) RETURNING id';
+    const values = [request.request.headers, request.time];
+
+    const insertedId = (await pool.query(sql, values)).rows[0].id;
+
+    req.id = insertedId;
+  } catch (err) {
+    console.error('error executing db query', err)
+  }
 
   next();
 }
