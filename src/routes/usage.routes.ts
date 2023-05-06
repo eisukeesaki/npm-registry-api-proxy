@@ -1,15 +1,15 @@
 /*##############################################################################
 
-# define routes under /usage
+# define routes under /usages
 
 ##############################################################################*/
 
 import express, { Request, Response } from 'express';
 import pool from '../database/queryDB';
 
-const router = express.Router();
+const usages = express.Router();
 
-router.get('/usages', async (req: Request, res: Response) => {
+usages.get('/usages', async (req: Request, res: Response) => {
   const sql = `
     SELECT
       requests.headers AS req_headers,
@@ -35,4 +35,4 @@ router.get('/usages', async (req: Request, res: Response) => {
   }
 });
 
-export default router;
+export default usages;
