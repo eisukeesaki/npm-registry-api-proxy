@@ -10,9 +10,9 @@ import collectRequest from '../middlewares/collectRequest';
 import collectResponse from '../middlewares/collectResponse';
 import pool from '../database/queryDB';
 
-const router = express.Router();
+const registry = express.Router();
 
-router.get('/registry/search', async (req: Request, res: Response) => {
+registry.get('/registry/search', async (req: Request, res: Response) => {
   try {
     const { data } = await client.get('https://registry.npmjs.com/-/v1/search', {
       params: {
@@ -32,14 +32,13 @@ router.get('/registry/search', async (req: Request, res: Response) => {
   }
 });
 
-router.get('/registry/:package/:version',
+registry.get('/registry/:package/:version',
   collectRequest, // write HTTP request metadata to db
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const pkg = req.params.package;
       const ver = req.params.version;
       const { data: pkgData } = await client.get(`https://registry.npmjs.com/${pkg}/${ver}`);
-      console.log(pkgData);
 
       res.status(200).json(pkgData);
 
@@ -50,7 +49,7 @@ router.get('/registry/:package/:version',
     }
   });
 
-router.get('/registry/:package', async (req: Request, res: Response) => {
+registry.get('/registry/:package', async (req: Request, res: Response) => {
   try {
     const pkg = req.params.package;
     const { data } = await client.get(`https://registry.npmjs.com/${pkg}`);
@@ -61,4 +60,4 @@ router.get('/registry/:package', async (req: Request, res: Response) => {
   }
 });
 
-export default router;
+export default registry;
