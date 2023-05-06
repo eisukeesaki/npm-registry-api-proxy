@@ -12,18 +12,15 @@ import pool from '../database/queryDB';
 
 const router = express.Router();
 
-router.get('/registry/:package', (req: Request, res: Response) => {
-  const pkg = req.params.package;
-
-  client.get(`https://registry.npmjs.com/${pkg}`)
-    .then(function(response) {
-      const data = response.data;
-      res.status(200).json(data);
-    })
-    .catch(function(error) {
-      console.log(error);
-      res.sendStatus(500);
-    });
+router.get('/registry/:package', async (req: Request, res: Response) => {
+  try {
+    const pkg = req.params.package;
+    const { data } = await client.get(`https://registry.npmjs.com/${pkg}`);
+    res.status(200).send(data);
+  } catch (err) {
+    console.log(err);
+    res.sendStatus(500);
+  }
 });
 
 router.get('/registry/:package/:version',
