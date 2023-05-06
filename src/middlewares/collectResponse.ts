@@ -17,9 +17,17 @@ async function collectResponse
       time: new Date().toISOString(),
     },
   };
-  const sql = 'INSERT INTO responses (request_id, headers, time, body) VALUES ($1, $2, $3, $4)';
+  const sql =
+    `INSERT INTO responses (request_id, headers, time, body)
+      VALUES ($1, $2, $3, $4)`;
+  const values = [
+    req.id,
+    resMetadata.response.headers,
+    resMetadata.response.time,
+    resMetadata.response.body
+  ];
 
-  pool.query(sql, [req.id, resMetadata.response.headers, resMetadata.response.time, resMetadata.response.body]);
+  pool.query(sql, values);
 
   next();
 }

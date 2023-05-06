@@ -14,16 +14,17 @@ const registry = express.Router();
 
 registry.get('/registry/search', async (req: Request, res: Response) => {
   try {
-    const { data } = await client.get('https://registry.npmjs.com/-/v1/search', {
-      params: {
-        text: req.query.text,
-        size: req.query.size,
-        from: req.query.from,
-        quality: req.query.quality,
-        popularity: req.query.popularity,
-        maintenance: req.query.maintenance,
-      }
-    });
+    const { data } =
+      await client.get('https://registry.npmjs.com/-/v1/search', {
+        params: {
+          text: req.query.text,
+          size: req.query.size,
+          from: req.query.from,
+          quality: req.query.quality,
+          popularity: req.query.popularity,
+          maintenance: req.query.maintenance,
+        }
+      });
 
     res.status(200).json(data);
   } catch (err) {
@@ -38,7 +39,8 @@ registry.get('/registry/:package/:version',
     try {
       const pkg = req.params.package;
       const ver = req.params.version;
-      const { data: pkgData } = await client.get(`https://registry.npmjs.com/${pkg}/${ver}`);
+      const { data: pkgData } =
+        await client.get(`https://registry.npmjs.com/${pkg}/${ver}`);
 
       res.status(200).json(pkgData);
 
