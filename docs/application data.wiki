@@ -2,19 +2,15 @@ application data
     (users)
     requests
         id
-        method
-        path
-        protocol
-        host
-        userAgent
-        accept
-        timestamp
+        headers
+        time
+        created
+        modified
     responses
         id
         request_id
-        x-powered-by
-        content-type
-        content-length
-        etag
-        timestamp
+        headers
+        time
         body
+        created
+        modified
