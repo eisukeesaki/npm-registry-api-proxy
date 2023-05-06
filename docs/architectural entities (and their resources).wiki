@@ -28,7 +28,7 @@ architectural entities (and their resources)
                             HTTP response headers
                             HTTP response body
                         endpoints
-                            /usage
+                            /usages
                     
                 
                     
