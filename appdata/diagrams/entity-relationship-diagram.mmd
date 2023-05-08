@@ -2,6 +2,9 @@
 title: npm-registry-proxy
 ---
 erDiagram
+    User ||..o{ Usage: "is associated with"
+    User ||..o{ Request: "makes/is made by"
+    Request ||..|| Response: "is fulfilled by/fulfills"
     User {
         UUID id PK
         string username "NOT NULL UNIQUE"
@@ -11,14 +14,14 @@ erDiagram
         UUID id PK
         string date "NOT NULL"
         integer count "NOT NULL"
-        UUID user_id FK
+        UUID user_id FK "NOT NULL"
     }
     Request {
         UUID id PK
         string time "NOT NULL"
         jsonb headers
-        UUID user_id FK
-        UUID response_id  FK
+        UUID user_id FK "NOT NULL"
+        UUID response_id FK
     }
     Response {
         UUID id PK
@@ -27,7 +30,4 @@ erDiagram
         jsonb body
         UUID request_id FK "NOT NULL"
     }
-    User ||..o{ Usage: "is associated with"
-    User ||..o{ Request: "makes/is made by"
-    Request ||..|| Response: "is fulfilled by/fulfills"
 
