@@ -2,16 +2,34 @@
 title: npm-registry-proxy
 ---
 erDiagram
-    REQ ||--o| RES: "is handled with"
-    REQ {
-        UUID id PK "required"
-        jsonb headers
-        string time "required"
+    User ||--o{ Usage: "is associated with"
+    Usage ||--|| Request: "is represented by/represents"
+    Request ||--|| Response: "is fulfilled with/fulfills"
+    User {
+        UUID id PK
+        string username "NOT NULL UNIQUE"
+        string api_key "NOT NULL UNIQUE"
     }
-    RES {
-        UUID id PK "required"
-        UUID request_id FK "req(id)"
+    Usage {
+        UUID id PK
+        string date "NOT NULL"
+        integer count "NOT NULL"
+        UUID user_id FK "NOT NULL"
+        UUID request_id FK "NOT NULL"
+
+    }
+    Request {
+        UUID id PK
+        string time "NOT NULL"
         jsonb headers
-        string time "required"
+        UUID usage_id FK "NOT NULL"
+        UUID response_id  FK
+    }
+    Response {
+        UUID id PK
+        string time "NOT NULL"
+        jsonb headers
         jsonb body
+        UUID request_id FK "NOT NULL"
     }
+
