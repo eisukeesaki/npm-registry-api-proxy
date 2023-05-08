@@ -12,26 +12,28 @@ import pool from '../database/queryDB';
 
 const registry = express.Router();
 
-registry.get('/registry/search', async (req: Request, res: Response) => {
-  try {
-    const { data } =
-      await client.get('https://registry.npmjs.com/-/v1/search', {
-        params: {
-          text: req.query.text,
-          size: req.query.size,
-          from: req.query.from,
-          quality: req.query.quality,
-          popularity: req.query.popularity,
-          maintenance: req.query.maintenance,
-        }
-      });
+registry.get('/registry/search',
+  // @todo collectRequest,
+  async (req: Request, res: Response) => {
+    try {
+      const { data } =
+        await client.get('https://registry.npmjs.com/-/v1/search', {
+          params: {
+            text: req.query.text,
+            size: req.query.size,
+            from: req.query.from,
+            quality: req.query.quality,
+            popularity: req.query.popularity,
+            maintenance: req.query.maintenance,
+          }
+        });
 
-    res.status(200).json(data);
-  } catch (err) {
-    console.log(err);
-    res.sendStatus(500);
-  }
-});
+      res.status(200).json(data);
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
+  });
 
 registry.get('/registry/:package/:version',
   // write HTTP request metadata to db
@@ -52,15 +54,17 @@ registry.get('/registry/:package/:version',
     }
   });
 
-registry.get('/registry/:package', async (req: Request, res: Response) => {
-  try {
-    const pkg = req.params.package;
-    const { data } = await client.get(`https://registry.npmjs.com/${pkg}`);
-    res.status(200).send(data);
-  } catch (err) {
-    console.log(err);
-    res.sendStatus(500);
-  }
-});
+registry.get('/registry/:package',
+  // @todo collectRequest,
+  async (req: Request, res: Response) => {
+    try {
+      const pkg = req.params.package;
+      const { data } = await client.get(`https://registry.npmjs.com/${pkg}`);
+      res.status(200).send(data);
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
+  });
 
 export default registry;
