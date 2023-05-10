@@ -1,13 +1,17 @@
+// import pool from './database/queryDB';
+// (async () => {
+//   const res = await pool.query('SELECT now()');
+//   console.log(res.rows[0]);
+// })();
+
 /*##############################################################################
 
 # start server
 
 ##############################################################################*/
 
-import dotenv from 'dotenv';
+import 'dotenv/config';
 import server from './server';
-
-dotenv.config();
 
 const scheme = 'http';
 const host = process.env.HOST;
