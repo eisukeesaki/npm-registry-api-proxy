@@ -10,6 +10,8 @@
 
 ##############################################################################*/
 
+Error.stackTraceLimit = 1;
+
 import 'dotenv/config';
 import server from './server';
 
