@@ -15,21 +15,37 @@ architectural entities (and their resources)
     proxy API
         resources
             public
+                /registeration
+                    input
+                        username
+                    operations
+                        sequence
+                            API server
+                                route handler
+                                    create new user object
+                                        generate API key
+                                        init usage count
+                                DB client
+                                    send INSERT query to DB server
+                            DB server
+                                INSERT new user record
+                                RETURNINGs INSERTed user record
+                            API server
+                                returns RETURNINGed user record
+                    output
+                        INSERTed user record                     
+            private (to authenticated users)
                 proxied resources (of NPM Public Registry API)
-                    endpoints
-                        /{packages}
-                        /{packages}/{version}
-                        /-/v1/search
-            private
-                registered & authenticated users
-                    usage (of this API) data
+                    /{packages}
+                    /{packages}/{version}
+                    /-/v1/search
+                /usages
+                    is usage (of this API) data
                         logs of
                             HTTP request headers
                             HTTP response headers
                             HTTP response body
-                        endpoints
-                            /usages
-                    
                 
-                    
+            
+                
 
