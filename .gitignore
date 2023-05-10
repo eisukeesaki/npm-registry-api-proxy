@@ -1,8 +1,13 @@
+# macOS
 .DS_Store
 
+# editor
 Session.vim
 
+# Node
 node_modules
-
-api-proxy
 .env
+
+# project specific
+api-proxy
+knowledge
