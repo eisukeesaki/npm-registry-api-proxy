@@ -6,8 +6,7 @@
 
 import express, { Request, Response, NextFunction } from 'express';
 import client from 'axios';
-import collectRequest from '../middlewares/collectRequest';
-import collectResponse from '../middlewares/collectResponse';
+import { collectRequest, collectResponse } from '../middlewares/registry';
 import pool from '../database/queryDB';
 
 const router = express.Router();
