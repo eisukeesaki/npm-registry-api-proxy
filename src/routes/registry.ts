@@ -10,9 +10,9 @@ import collectRequest from '../middlewares/collectRequest';
 import collectResponse from '../middlewares/collectResponse';
 import pool from '../database/queryDB';
 
-const registry = express.Router();
+const router = express.Router();
 
-registry.get('/registry/search',
+router.get('/registry/search',
   // @todo collectRequest,
   async (req: Request, res: Response) => {
     try {
@@ -35,7 +35,7 @@ registry.get('/registry/search',
     }
   });
 
-registry.get('/registry/:package/:version',
+router.get('/registry/:package/:version',
   // write HTTP request metadata to db
   collectRequest,
   async (req: Request, res: Response, next: NextFunction) => {
@@ -54,7 +54,7 @@ registry.get('/registry/:package/:version',
     }
   });
 
-registry.get('/registry/:package',
+router.get('/registry/:package',
   // @todo collectRequest,
   async (req: Request, res: Response) => {
     try {
@@ -67,4 +67,4 @@ registry.get('/registry/:package',
     }
   });
 
-export default registry;
+export default router;

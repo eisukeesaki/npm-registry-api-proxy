@@ -7,21 +7,21 @@
 import express, { Request, Response } from 'express';
 import pool from '../database/queryDB';
 
-const usages = express.Router();
+const router = express.Router();
 
-usages.get('/usages', async (req: Request, res: Response) => {
-  const sql = `
-    SELECT
-      requests.headers AS req_headers,
-      requests.time AS req_time,
-      responses.headers AS res_headers,
-      responses.body AS res_body,
-      responses.time AS res_time
-    FROM requests
-    JOIN responses
-    ON requests.id = responses.request_id`;
-
+router.get('/usages', async (req: Request, res: Response) => {
   try {
+    const sql = `
+      SELECT
+        requests.headers AS req_headers,
+        requests.time AS req_time,
+        responses.headers AS res_headers,
+        responses.body AS res_body,
+        responses.time AS res_time
+      FROM requests
+      JOIN responses
+      ON requests.id = responses.request_id`;
+
     const data = await pool.query(sql);
 
     const usages = {
@@ -35,4 +35,4 @@ usages.get('/usages', async (req: Request, res: Response) => {
   }
 });
 
-export default usages;
+export default router;
