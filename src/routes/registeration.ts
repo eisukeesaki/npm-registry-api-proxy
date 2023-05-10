@@ -8,6 +8,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import pool from '../database/queryDB';
 import crypto from 'node:crypto';
 
+// @todo ?decouple from this file
 interface User {
   id: string;
   username: string;
@@ -17,6 +18,7 @@ interface User {
 const router = express.Router();
 
 // @todo ?define return type
+// @todo decouple from this file
 async function createUser(username: string, req: Request): Promise<User> {
   const apiKey = crypto.randomUUID();
 
@@ -29,7 +31,6 @@ async function createUser(username: string, req: Request): Promise<User> {
   return user.rows[0];
 }
 
-// router.post('/registration', async (req: Request, res: Response): Promise<void>) => {
 router.post('/registration', async (req: Request, res: Response): Promise<void> => {
   console.trace('req.body: %o', req.body);
   try {
