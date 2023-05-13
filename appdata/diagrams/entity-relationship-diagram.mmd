@@ -2,32 +2,37 @@
 title: npm-registry-proxy
 ---
 erDiagram
-    User ||..o{ Usage: "is associated with"
-    User ||..o{ Request: "makes/is made by"
-    Request ||..|| Response: "is fulfilled by/fulfills"
     User {
-        UUID id PK
-        string username "NOT NULL UNIQUE"
-        string api_key "NOT NULL UNIQUE"
+        biging id PK "server-generated"
+        string email "NOT NULL UNIQUE"
+    }
+    Key {
+        bigint id PK "server-generated"
+        UUID key PK "server-generated"
+        biging user_id FK
     }
     Usage {
-        UUID id PK
-        string date "NOT NULL"
-        integer count "NOT NULL"
-        UUID user_id FK "NOT NULL"
+        biging id PK "server-generated"
+        string date_ "NOT NULL"
+        integer count_ "NOT NULL"
+        UUID api_key FK "NOT NULL"
     }
     Request {
-        UUID id PK
+        biging id PK "server-generated"
         string time "NOT NULL"
         jsonb headers
-        UUID user_id FK "NOT NULL"
-        UUID response_id FK
+        UUID api_key FK "NOT NULL"
+        biging response_id FK
     }
     Response {
-        UUID id PK
+        biging id PK "server-generated"
         string time "NOT NULL"
         jsonb headers
         jsonb body
-        UUID request_id FK "NOT NULL"
+        biging request_id FK "NOT NULL"
     }
+    User ||..o{ Usage: "is associated with"
+    Key }o..|| User: "has/owned by"
+    User ||..o{ Request: "makes/is made by"
+    Request ||..|| Response: "is fulfilled by/fulfills"
 
