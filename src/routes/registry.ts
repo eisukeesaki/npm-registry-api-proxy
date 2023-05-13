@@ -6,8 +6,12 @@
 
 import express, { Request, Response, NextFunction } from 'express';
 import client from 'axios';
-import { collectRequest, collectResponse } from '../middlewares/registry';
+import {
+  collectRequest,
+  collectResponse
+} from '../middlewares/registry';
 import pool from '../database/queryDB';
+import authenticate from '../middlewares/authN';
 
 const router = express.Router();
 
@@ -35,8 +39,8 @@ router.get('/registry/search',
   });
 
 router.get('/registry/:package/:version',
-  // write HTTP request metadata to db
-  collectRequest,
+  authenticate, // commented for demo purpose
+  // collectRequest, // commented for demo purpose
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const pkg = req.params.package;
@@ -45,8 +49,7 @@ router.get('/registry/:package/:version',
         await client.get(`https://registry.npmjs.com/${pkg}/${ver}`);
 
       res.status(200).json(pkgData);
-      // write HTTP response metadata to db
-      collectResponse(req, res, next, pkgData);
+      // collectResponse(req, res, next, pkgData); // commented for demo purpose
     } catch (err) {
       console.log(err);
       res.sendStatus(500);
