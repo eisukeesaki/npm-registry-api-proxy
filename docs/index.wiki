@@ -3,8 +3,8 @@ NPM registry API proxy
     [[target user]]
     [[supported clients]]
     [[features]]
-    [[usage examples]]
-    [[architectural entities (and their resources)]]
+    [[architectural entities]]
     [[application data]]
+    [[usage examples]]
     [[todo]]
 

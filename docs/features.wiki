@@ -1,8 +1,11 @@
 features
-    all users
-        act as a proxy for public API
-    registered & authenticated users
-        usage data
+    all Users
+        register client's identity
+    authenticated Users
+        act as a proxy for NPM registry API
+        provide information about
+            Usage of this API
+                the Requests the Users made & the corresponding Responses
     admins
         monitor
             performance

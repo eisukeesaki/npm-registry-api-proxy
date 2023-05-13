@@ -1,4 +1,4 @@
-architectural entities (and their resources)
+architectural entities
     origin API
         NPM public registry API
             resources
@@ -22,30 +22,42 @@ architectural entities (and their resources)
                         sequence
                             API server
                                 route handler
-                                    create new user object
+                                    create new User object
                                         generate API key
-                                        init usage count
+                                        init Usage.count
                                 DB client
                                     send INSERT query to DB server
                             DB server
-                                INSERT new user record
-                                RETURNINGs INSERTed user record
+                                INSERT new User record
+                                RETURNINGs INSERTed User record
                             API server
-                                returns RETURNINGed user record
+                                returns RETURNINGed User record
                     output
-                        INSERTed user record                     
-            private (to authenticated users)
+                        INSERTed User record                     
+            protected
                 proxied resources (of NPM Public Registry API)
                     /{packages}
                     /{packages}/{version}
                     /-/v1/search
                 /usages
-                    is usage (of this API) data
+                    is
+                        Usage records associated with a User
+                            date
+                            count
+                /reqres
+                    is
                         logs of
-                            HTTP request headers
-                            HTTP response headers
-                            HTTP response body
-                
-            
-                
+                            Request
+                                time requested
+                                HTTP request headers
+                            Response
+                                time responded
+                                HTTP response headers
+                                HTTP response body
+    functionalities
+        authN
+            middleware
+                        
+                    
+                        
 

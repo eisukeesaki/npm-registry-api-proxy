@@ -1,16 +1,22 @@
-application data
-    (users)
-    requests
+application data (see ERD)
+    User
         id
-        headers
-        time
-        created
-        modified
-    responses
+        username
+        api_key
+    Usage
         id
-        request_id
-        headers
+        date
+        count
+        user_id
+    Request
+        id
         time
+        headers
+        user_id
+        response_id
+    Response
+        id
+        time
+        headers
         body
-        created
-        modified
+        request_id
