@@ -10,3 +10,5 @@ implement behavior
     [X] GET /{package}/{version} -> write request data to database
         implement types for `queryDB.ts`
     [X] implement routes to serve resources: request, response
+    
+delete all unused files from modules/prng
