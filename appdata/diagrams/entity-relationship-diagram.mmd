@@ -5,11 +5,7 @@ erDiagram
     User {
         biging id PK "server-generated"
         string email "NOT NULL UNIQUE"
-    }
-    Key {
-        bigint id PK "server-generated"
-        UUID key PK "server-generated"
-        biging user_id FK
+        UUID api_key "server-generated"
     }
     Usage {
         biging id PK "server-generated"
@@ -32,7 +28,6 @@ erDiagram
         biging request_id FK "NOT NULL"
     }
     User ||..o{ Usage: "is associated with"
-    Key }o..|| User: "has/owned by"
     User ||..o{ Request: "makes/is made by"
     Request ||..|| Response: "is fulfilled by/fulfills"
 
