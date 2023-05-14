@@ -13,7 +13,7 @@ CREATE OR REPLACE FUNCTION update_modified_column()
 
 -- USER
 CREATE TABLE users (
-    id bigint
+    id bigserial
         PRIMARY KEY,
     email VARCHAR(160)
         NOT NULL
@@ -36,7 +36,7 @@ CREATE TABLE keys (
     key UUID
         NOT NULL
         UNIQUE,
-    user_id bigint
+    user_id bigserial
         REFERENCES users,
     created TIMESTAMP
         NOT NULL
